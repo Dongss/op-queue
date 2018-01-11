@@ -1,0 +1,57 @@
+{
+  "name": "op-queue",
+  "version": "1.0.0",
+  "description": "",
+  "main": "dist/index.js",
+  "typings": "dist/index.d.ts",
+  "scripts": {
+    "dev": "tsc -w",
+    "build": "tsc",
+    "prepublish": "npm run build",
+    "lint": "tslint 'src/**/*.ts'",
+    "pretest": "npm run lint && npm run build && cd test && tsc",
+    "test": "nyc ava --serial"
+  },
+  "author": {
+    "name": "Shaoshuai Dong",
+    "email": "dongsoso@hotmail.com",
+    "url": "https://github.com/Dongss"
+  },
+  "homepage": "https://github.com/Dongss/op-queue",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Dongss/op-queue.git"
+  },
+  "bugs": {
+    "url": "https://github.com/Dongss/op-queue/issues"
+  },
+  "keywords": ["operation", "queue", "promise", "async", "await", "synchronously"],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^4.0.35",
+    "@types/sinon": "^4.1.2",
+    "ava": "^0.24.0",
+    "coveralls": "^3.0.0",
+    "nyc": "^11.4.1",
+    "sinon": "^4.1.4",
+    "tslint": "^5.8.0",
+    "typescript": "^2.6.2"
+  },
+  "ava": {
+    "files": [
+      "dist_test/test/*.js",
+      "!dist_test/lib.js"
+    ]
+  },
+  "nyc": {
+    "reporter": [
+      "html",
+      "lcov",
+      "text"
+    ],
+    "exclude": [
+      "node_modules",
+      "dist_test/test"
+    ]
+  }
+}
