@@ -1,5 +1,10 @@
 # op-queue
 
+[![Build Status](https://travis-ci.org/Dongss/op-queue.svg?branch=master)](https://travis-ci.org/Dongss/op-queue)
+[![Coverage Status](https://coveralls.io/repos/github/Dongss/op-queue/badge.svg?branch=master)](https://coveralls.io/github/Dongss/op-queue?branch=master)
+[![Dependency Status](https://dependencyci.com/github/Dongss/op-queue/badge)](https://dependencyci.com/github/Dongss/op-queue)
+
+
 A simple module for operations in queue.
 
 Push operations to queue, they will execute one by one.
