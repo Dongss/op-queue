@@ -69,7 +69,7 @@ let myQ = new OpQueue(opt);
 
 opt:
 
-* `manualStart`: boolean, default false. If set true, operations pushed in queue will not execute until you call `start()` method. Use this when you want to push all operations in queue then star from first one and execute one by one.
+* `manualStart`: boolean, default false. If set true, operations pushed in queue will not execute until you call `start()` method. Use this when you want to push all operations in queue then start from first one and execute one by one.
 
 ### OpQueue.buildOperation(fn)
 
