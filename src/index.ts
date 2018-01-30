@@ -12,15 +12,21 @@ export interface QueueElement {
     cb?: (err: any, ...args: any[]) => any;
 }
 
-export interface QueueInfo {
-    length: number;
+export interface QueueOpt {
+    manualStart: boolean;
 }
 
+const DefaultOpt: QueueOpt = {
+    manualStart: false
+};
+
 export default class OpQueue extends events.EventEmitter {
+    private opt: QueueOpt;
     private q: Array<QueueElement>;
     current: QueueElement = null;
-    constructor() {
+    constructor(opt?: QueueOpt) {
         super();
+        this.opt = Object.assign(DefaultOpt, opt);
         this.q = [];
     }
     static buildOperation(fn: Operation) {
@@ -33,12 +39,17 @@ export default class OpQueue extends events.EventEmitter {
     get length() {
         return this.q.length;
     }
+    start () {
+        if (!this.opt.manualStart) return;
+        this.beforeNext();
+    }
     push(op: Operation, cb?: (...args: any[]) => any) {
         this.q.push({
             op: op,
             cb: cb
         });
-       this.beforeNext();
+        if (this.opt.manualStart) return;
+        this.beforeNext();
     }
     private next() {
         if (this.length < 1) {

@@ -7,7 +7,7 @@
 
 A simple module for operations in queue.
 
-Push operations to queue, they will execute one by one.
+Push operations to queue, they will execute one by one synchronous.
 
 Support `async` functions or functions returned `Promise`.
 
@@ -64,8 +64,12 @@ myQ.on('op_error', (error) => {
 
 ```
 const OpQueue = require('op-queue').default;
-let myQ = new OpQueue();
+let myQ = new OpQueue(opt);
 ```
+
+opt:
+
+* `manualStart`: boolean, default false. If set true, operations pushed in queue will not execute until you call `start()` method. Use this when you want to push all operations in queue then star from first one and execute one by one.
 
 ### OpQueue.buildOperation(fn)
 
@@ -83,6 +87,20 @@ Push operation to queue
 
 * `op` value returned by `OpQueue.buildOperation(fn)`
 * `callback` returns of op, optional, (error, data) => {}
+
+### start()
+
+Start execute operations in queue. (only work when option `manualStart` is true)
+
+```
+const OpQueue = require('op-queue').default;
+let myQ = new OpQueue({ manualStart: true });
+myQ.push(...);
+myQ.push(...);
+myQ.push(...);
+// operations will start execute after call start() method
+myQ.start();
+```
 
 ## Example
 

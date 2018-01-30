@@ -102,6 +102,27 @@ test('synchronously execute', async t => {
     myQ.push(myAsyncOp(100), cb);
     myQ.push(myAsyncOp(200), cb);
     await sleep(3000);
+    t.is(0, myQ.length);
+    t.deepEqual([500, 100, 200], result);
+    t.pass();
+});
+
+test('manual start', async t => {
+    let myQ = new OpQueue({ manualStart: true });
+    let result: any[] = [];
+    t.is(0, myQ.length);
+    let cb = (error: any, v: any) => {
+        result.push(v);
+    };
+    let myAsyncOp = OpQueue.buildOperation(asyncOperation);
+    myQ.push(myAsyncOp(500), cb);
+    myQ.push(myAsyncOp(100), cb);
+    myQ.push(myAsyncOp(200), cb);
+    await sleep(1000);
+    t.is(3, myQ.length);
+    myQ.start();
+    await sleep(3000);
+    t.is(0, myQ.length);
     t.deepEqual([500, 100, 200], result);
     t.pass();
 });
