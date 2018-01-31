@@ -1,7 +1,7 @@
 {
   "name": "op-queue",
-  "version": "1.1.0",
-  "description": "",
+  "version": "1.1.1",
+  "description": "A simple module for operations in queue",
   "main": "dist/index.js",
   "typings": "dist/index.d.ts",
   "scripts": {
