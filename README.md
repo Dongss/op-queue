@@ -86,7 +86,7 @@ Get length of operations pending in queue (exclude the operation in processing)
 Push operation to queue
 
 * `op` value returned by `OpQueue.buildOperation(fn)`
-* `callback` returns of op, optional, (error, data) => {}
+* `callback` returns of op, optional, (error, data) => {} `error`: error op rejected, or null if op resolved, `data`: value op resolved.
 
 ### start()
 
